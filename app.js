@@ -1,9 +1,14 @@
+const searchInput = document.getElementById('search');
+const resultsContainer = document.getElementById('results');
 
-fetch(`https://images-api.nasa.gov/search?q=europa
-&media_type=image
-`)
+searchInput.addEventListener('keyup', (event) => {
+    const phrase = event.target.value;
+    fetch(`https://images-api.nasa.gov/search?q=${phrase}
+    &media_type=image
+    `)
     .then(data => data.json())
     .then(data => {
+        resultsContainer.innerHTML = '';
         const items = data.collection.items;
         console.log(items)
         items.forEach(item => {
@@ -13,10 +18,14 @@ fetch(`https://images-api.nasa.gov/search?q=europa
             const paragraphElement = document.createElement('p');
             paragraphElement.innerHTML = desc;
             imgElement.src = href;
-            document.body.appendChild(imgElement);
-            document.body.appendChild(paragraphElement);
+            resultsContainer.appendChild(imgElement);
+            resultsContainer.appendChild(paragraphElement);
         })
     })
+})
+
+
+
 
 
 
