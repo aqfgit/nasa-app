@@ -14,12 +14,14 @@ searchInput.addEventListener('keyup', (event) => {
         items.forEach(item => {
             const href = item.links[0].href;
             const desc = item.data[0].description;
-            const imgElement = document.createElement('img');
-            const paragraphElement = document.createElement('p');
-            paragraphElement.innerHTML = desc;
-            imgElement.src = href;
-            resultsContainer.appendChild(imgElement);
-            resultsContainer.appendChild(paragraphElement);
+            const newItem = document.createElement('article');
+            newItem.classList.add('results__item');
+            newItem.style.backgroundImage = `url(${href})`;
+            //const paragraphElement = document.createElement('p');
+            //paragraphElement.innerHTML = desc;
+            newItem.src = href;
+            resultsContainer.appendChild(newItem);
+            //resultsContainer.appendChild(paragraphElement);
         })
     })
 })
