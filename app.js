@@ -47,6 +47,8 @@ searchInput.addEventListener('keyup', (event) => {
 
                 const popupElement = document.createElement('article');
                 popupElement.classList.add('popup');
+                const popupElementImageWrapper = document.createElement('div');
+                popupElementImageWrapper.classList.add('popup__image-wrapper');
                 const popupElementImage = document.createElement('img');
                 popupElementImage.classList.add('popup__image');
                 popupElementImage.src = href;
@@ -58,14 +60,23 @@ searchInput.addEventListener('keyup', (event) => {
                 popupElementDescription.innerHTML = description;
                 const popupElementTextWrapper = document.createElement('div');
                 popupElementTextWrapper.classList.add('popup__text-wrapper');
+                const popupElementClose = document.createElement('span');
+                popupElementClose.classList.add('popup__close');
                
                 popupElementTextWrapper.appendChild(popupElementTitle);
                 popupElementTextWrapper.appendChild(popupElementDescription);
+                popupElementImageWrapper.appendChild(popupElementImage);
 
-                popupElement.appendChild(popupElementImage);
+                popupElement.appendChild(popupElementClose);
+                popupElement.appendChild(popupElementImageWrapper);
                 popupElement.appendChild(popupElementTextWrapper);
                 
                 document.body.appendChild(popupElement);
+
+                popupElementClose.addEventListener('click', () => {
+                    popupElement.style.opacity = 0;
+                    window.setTimeout(() => document.body.removeChild(popupElement), 300);
+                });
 
             })
         })
